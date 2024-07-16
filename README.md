@@ -42,7 +42,7 @@ git clone https://github.com/aerostack2/as2_platform_crazyflie.git
 
 For compiling you can use AS2 CLI just by running
 
-``
+```
 as2 build 
 ```
 
