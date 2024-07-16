@@ -1,0 +1,18 @@
+services:
+  aerostack2:
+    image: as2_rss_demo
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile
+    container_name: aerostack2_rss
+    environment:
+      DISPLAY: $DISPLAY
+    privileged: true
+    volumes:
+      # X11
+      - ~/.Xauthority:/root/.Xauthority
+      # 
+      - /dev/:/dev
+      - .:/root/project_rss24_demo/
+    network_mode: "host"
+    command: tail -f /dev/null
