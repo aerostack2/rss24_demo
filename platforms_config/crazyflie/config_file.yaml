@@ -1,0 +1,34 @@
+/**:
+  # # Global Parameters
+  # ros__parameters:
+  #   tf_timeout_threshold: 0.05
+
+  # State Estimator
+  state_estimator:
+    ros__parameters:
+      plugin_name: "raw_odometry"
+
+  # Behaviors Motion
+  TakeoffBehavior:
+    ros__parameters:
+      takeoff_plugin_name: "takeoff_plugin_position"
+  LandBehavior:
+    ros__parameters:
+      land_plugin_name: "land_plugin_speed"
+  GoToBehavior:
+    ros__parameters:
+      go_to_plugin_name: "go_to_plugin_position"
+  FollowPathBehavior:
+    ros__parameters:
+      follow_path_plugin_name: "follow_path_plugin_position"
+
+# Specific Parameters for each drone
+drone0:
+  platform:
+    ros__parameters:
+      uri: radio://0/80/2M/E7E7E7E701
+
+# drone1:
+#   platform:
+#     ros__parameters:
+#       uri: radio://0/80/2M/E7E7E7E702
