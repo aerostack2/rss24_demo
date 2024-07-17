@@ -128,8 +128,11 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help='Enable verbose output')
-    parser.add_argument('--use_sim_time', type=bool,
-                        default=False, help='Use simulation time')
+    parser.add_argument('-s','--use_sim_time',
+                        action='store_false',
+                        default=True,
+                        help='Use simulation time')
+                        
 
     args = parser.parse_args()
     leader_namespace = args.leader_namespace
