@@ -1,6 +1,6 @@
 <%
 # Input parameters
-drone_namespace  = @settings["drone_namespace"] == "drone0"
+drone_namespace  = @settings["drone_namespace"]
 keyboard_teleop   = @settings["keyboard_teleop"] == "true"
 rviz              = @settings["rviz"] == "true"
 %>

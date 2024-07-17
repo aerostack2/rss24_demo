@@ -1,10 +1,9 @@
 <%
-namespace          = @settings["namespace"] == "drone0"
+namespace          = @settings["namespace"] 
 config_folder      = './platforms_config/crazyflie'
 %>
 
 name: <%= namespace %>
-
 attach: false
 root: ./
 windows:
@@ -12,7 +11,7 @@ windows:
   - platform:
       layout: tiled
       panes:
-      <%- if namespace == 'drone0' %>
+      <%- if namespace == "drone0" %>
       - ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py
             swarm_config_file:=<%= config_folder %>/config_file.yaml
       <%- else %>

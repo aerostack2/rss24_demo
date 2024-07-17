@@ -1,10 +1,9 @@
 <%
-namespace          = @settings["namespace"] == "drone0"
+namespace          = @settings["namespace"]
 config_folder      = './platforms_config/gazebo'
 %>
 
 name: <%= namespace %>
-
 attach: false
 root: ./
 windows:
