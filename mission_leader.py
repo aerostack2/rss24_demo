@@ -44,6 +44,10 @@ import rclpy
 
 LEADER_MAX_SPEED = 0.3  # Maximum speed for the leader drone (m/s)
 SLEEP_TIME = 0.5  # Sleep time between actions (seconds)
+SD_MIN = 0.0  # Minimum square dimension for the mission (m)
+SD_MAX = 1.0  # Maximum square dimension for the mission (m)
+LOWEST_HEIGHT = 0.5  # Lowest height for the mission (m)
+HIGHEST_HEIGHT = 1.5  # Highest height for the mission (m)
 
 
 def wait_to_takeoff(drone_interface: DroneInterfaceBase):
@@ -68,7 +72,7 @@ def leader_mission(leader_interface: DroneInterface, follower_interface_list: li
 
     # TAKE OFF
     print(f'Leader {leader_interface.drone_id} take off')
-    leader_interface.takeoff(1.0, speed=0.5)
+    leader_interface.takeoff(LOWEST_HEIGHT, speed=0.5)
 
     if not leader_interface.takeoff.result:
         print(f'Leader {leader_interface.drone_id} take off failed')
@@ -88,13 +92,13 @@ def leader_mission(leader_interface: DroneInterface, follower_interface_list: li
     # SIMPLE MISSION
     print(f'Leader {leader_interface.drone_id} simple mission')
     path = [
-        [1.0, 0.0, 1.0],  # Forward
-        [1.0, 1.0, 1.0],  # Left
-        [1.0, 1.0, 1.5],  # Up
-        [0.0, 1.0, 1.5],  # Backward
-        [0.0, 1.0, 1.0],  # Down
-        [0.0, 0.0, 1.0],  # Right
-        [1.0, 0.0, 1.0],  # Forward
+        [SD_MAX, SD_MIN, LOWEST_HEIGHT],  # Forward
+        [SD_MAX, SD_MAX, LOWEST_HEIGHT],  # Left
+        [SD_MAX, SD_MAX, HIGHEST_HEIGHT],  # Up
+        [SD_MIN, SD_MAX, HIGHEST_HEIGHT],  # Backward
+        [SD_MIN, SD_MAX, LOWEST_HEIGHT],  # Down
+        [SD_MIN, SD_MIN, LOWEST_HEIGHT],  # Right
+        [SD_MAX, SD_MIN, LOWEST_HEIGHT],  # Forward
     ]
     for goal in path:
         print(f'Leader {leader_interface.drone_id} go to with path facing {goal}')

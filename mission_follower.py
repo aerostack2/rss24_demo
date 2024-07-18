@@ -45,8 +45,9 @@ import rclpy
 
 
 # Follow drone parameters
+TAKEOFF_HEIGHT = 0.5  # Takeoff height in meters
 SPEED = 0.3  # Max speed in m/s
-SECURITY_DISTANCE_TO_LEADER = 0.3  # Meters
+SECURITY_DISTANCE_TO_LEADER = 0.5  # Meters
 GOAL_THRESHOLD = 0.1  # Meters
 LEADER_POSITION_SAMPLING_DISTANCE = 0.05  # Meters
 RVIZ_DEBUG = True  # Enable RViz debug
@@ -91,7 +92,7 @@ def follower_mission(follower_interface: DroneInterface, leader_interface: Drone
 
     # TAKE OFF
     print(f'Follower {follower_interface.drone_id} take off')
-    follower_interface.takeoff(1.0, speed=0.5)
+    follower_interface.takeoff(TAKEOFF_HEIGHT, speed=0.5)
 
     if not follower_interface.takeoff.result:
         print(f'Follower {follower_interface.drone_id} take off failed')

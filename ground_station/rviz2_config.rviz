@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
       Splitter Ratio: 0.5382353067398071
-    Tree Height: 719
+    Tree Height: 363
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -192,7 +192,7 @@ Visualization Manager:
       Enabled: true
       Name: ReferencePose
       Namespaces:
-        {}
+        am: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -232,6 +232,31 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        m4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -244,7 +269,7 @@ Visualization Manager:
       Enabled: true
       Name: ReferencePose
       Namespaces:
-        {}
+        am: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -257,7 +282,7 @@ Visualization Manager:
       Enabled: true
       Name: HistoryPoses
       Namespaces:
-        {}
+        am: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -311,7 +336,7 @@ Visualization Manager:
       Enabled: true
       Name: Marker
       Namespaces:
-        {}
+        follow_drone: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -402,5 +427,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 937
-  X: 46
+  X: 983
   Y: 27

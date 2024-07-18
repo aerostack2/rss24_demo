@@ -156,9 +156,9 @@ class FollowDroneModule():
             self.__marker.type = Marker.SPHERE
             self.__marker.action = Marker.ADD
             self.__marker.lifetime = Duration(seconds=MARKERS_LIFETIME).to_msg()
-            self.__marker.scale.x = 0.1
-            self.__marker.scale.y = 0.1
-            self.__marker.scale.z = 0.1
+            self.__marker.scale.x = 0.05
+            self.__marker.scale.y = 0.05
+            self.__marker.scale.z = 0.05
             self.__marker.color.r = 0.5
             self.__marker.color.g = 0.5
             self.__marker.color.b = 0.5
