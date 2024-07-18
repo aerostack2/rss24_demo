@@ -45,13 +45,13 @@ import rclpy
 
 
 # Follow drone parameters
-SPEED = 0.2  # Max speed in m/s
-SECURITY_DISTANCE_TO_LEADER = 0.4  # Meters
-GOAL_THRESHOLD = 0.2  # Meters
+SPEED = 0.3  # Max speed in m/s
+SECURITY_DISTANCE_TO_LEADER = 0.3  # Meters
+GOAL_THRESHOLD = 0.1  # Meters
 LEADER_POSITION_SAMPLING_DISTANCE = 0.05  # Meters
 RVIZ_DEBUG = True  # Enable RViz debug
 
-SLEEP_TIME = 2.0  # Sleep time between actions (seconds)
+SLEEP_TIME = 0.5  # Sleep time between actions (seconds)
 
 
 def wait_to_takeoff(drone_interface: DroneInterfaceBase):
@@ -134,7 +134,7 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help='Enable verbose output')
-    parser.add_argument('-s','--use_sim_time',
+    parser.add_argument('-r','--use_sim_time',
                         action='store_false',
                         default=True,
                         help='Use simulation time')

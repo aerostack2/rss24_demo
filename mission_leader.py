@@ -42,8 +42,8 @@ from as2_msgs.msg import PlatformStatus
 from as2_python_api.drone_interface import DroneInterface, DroneInterfaceBase
 import rclpy
 
-LEADER_MAX_SPEED = 0.4  # Maximum speed for the leader drone (m/s)
-SLEEP_TIME = 2.0  # Sleep time between actions (seconds)
+LEADER_MAX_SPEED = 0.3  # Maximum speed for the leader drone (m/s)
+SLEEP_TIME = 0.5  # Sleep time between actions (seconds)
 
 
 def wait_to_takeoff(drone_interface: DroneInterfaceBase):
@@ -128,7 +128,7 @@ if __name__ == '__main__':
                         action='store_true',
                         default=False,
                         help='Enable verbose output')
-    parser.add_argument('-s','--use_sim_time',
+    parser.add_argument('-r','--use_sim_time',
                         action='store_false',
                         default=True,
                         help='Use simulation time')

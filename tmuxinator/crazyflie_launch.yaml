@@ -4,7 +4,7 @@ config_folder      = './platforms_config/crazyflie'
 %>
 
 name: <%= namespace %>
-attach: false
+attach: true
 root: ./
 windows:
   # Platform
@@ -41,3 +41,10 @@ windows:
         - ros2 launch as2_behaviors_motion motion_behaviors_launch.py
             namespace:=<%= namespace %>
             config_file:=<%= config_folder %>/config_file.yaml
+
+  # Monitor
+  - monitor:
+      layout:
+      panes:
+        - ros2 run as2_alphanumeric_viewer as2_alphanumeric_viewer_node
+            --ros-args -r  __ns:=/<%= namespace %>

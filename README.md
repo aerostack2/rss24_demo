@@ -55,75 +55,61 @@ cd ~/aerostack2_ws/ && colcon build --symlink-install
 > Remind to ``` source ~/aerostack2_ws/install/setup.bash ``` on each terminal you are going to use for runnning the demo.
 
 
-## Launching the demo.
+## Launching Aerostack2 components for crazyflie
 
-For running the demo you need to launch the followings Aerostack2 nodes in different terminals for each drone agent.
+For launching the demo using **Crazyflie**, we automated the process using tmuxinator. You can run the following commands:
 
-1. Gazebo simulator (once)
+- Launch leader drone:
 ```
-ros2 launch as2_gazebo_assets launch_simulation.py use_sim_time:=true simulation_config_file:=configs/gazebo/world.yaml
-```
-
-2. Aerostack2 platform
-```
-ros2 launch as2_platform_gazebo platform_gazebo_launch.py namespace:=drone0 platform_config_file:=configs/gazebo/config_file.yaml simulation_config_file:=configs/gazebo/world.yaml
+tmuxinator start -p tmuxinator/crazyflie_launch.yaml namespace=drone0
 ```
 
-3. Aerostack2 basic robotics functions
-
-- State Estimation
+- Launch follower drone:
 ```
-ros2 launch as2_state_estimator state_estimator_launch.py namespace:=drone0 config_file:=configs/gazebo/config_file.yaml
+tmuxinator start -p tmuxinator/crazyflie_launch.yaml namespace=drone1
 ```
 
-- Motion Controller
+## Launching Aerostack2 components for simulation
+
+For launching the demo, usign **Gazebo**, we automated the process using tmuxinator. You can run the following commands:
+
+- Launch the gazebo simulator:
 ```
-ros2 launch as2_motion_controller controller_launch.py namespace:=drone0 config_file:=configs/gazebo/config_file.yaml plugin_name:=pid_speed_controller plugin_config_file:=configs/gazebo/pid_speed_controller.yaml
+ros2 launch as2_gazebo_assets launch_simulation.py simulation_config_file:=platforms_config/gazebo/world.yaml
 ```
 
-4. Aerostack2 Motion Behaviors
+- Launch leader drone:
 ```
-ros2 launch as2_behaviors_motion motion_behaviors_launch.py namespace:=drone0 config_file:=configs/gazebo/config_file.yaml
-```
-
-We have automated this using tmux. For that, you can run the following command:
-
-```
-./launch_as2.bash
+tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone0
 ```
 
-Also, you can run ground station utilities for monitoring the drone status and send commands to it.
-
-- Keyboard Teleoperation
+- Launch follower drone:
 ```
-ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py namespace:=drone0,drone1 config_file:=ground_station/keyboard_teleop.yaml use_sim_time:=true
+tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone1
 ```
 
-- RVIZ2 visualization
+
+## Launching the follow-drone mission
+
+For running the follow-drone mission you can run the following commands:
+
+- Launch leader mission:
 ```
-ros2 launch as2_visualization swarm_viz.launch.py namespace_list:=drone0,drone1 rviz_config:=ground_station/rviz2_config.rviz
+python3 mission_leader.py
 ```
 
-We have also automated this using tmux. For that, you can run the following command:
-
+- Launch follower mission:
 ```
-./launch_ground_station.bash
-```
-
-To close all tmux sessions, you can run the following command:
-
-```
-./stop.bash
+python3 mission_follower.py
 ```
 
-For running leader mission you can run the following command:
+*Note: If not using Gazebo, add '-r' flag to the mission scripts to set use_sim_time to False.
 
-```
-python3 mission_leader.py -l drone0 -f drone1
-```
+## Launching the ground station utilities
 
-For running follower mission you can run the following command:
+For monitoring the drone status using RViz and send commands to it using Aerostack2 Keyboard Teleoperation, you can run the following command:
 
+- Launch the ground station:
 ```
-python3 mission_follower.py -l drone1 -f drone0
+tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1 rviz=true keyboard_teleop=false
 ```
