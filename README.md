@@ -104,8 +104,10 @@ For monitoring the drone status using RViz and send commands to it using Aerosta
 
 - Launch the ground station:
 ```
-tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1,drone2 rviz=true keyboard_teleop=true
+tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1,drone2 rviz=true keyboard_teleop=true use_sim_time=true
 ```
+
+*Note: If not using Gazebo, set use_sim_time to False.*
 
 ## Launching the follow-drone mission
 
@@ -126,7 +128,7 @@ python3 mission_follower.py -f drone1 -l drone0
 python3 mission_follower.py -f drone2 -l drone1
 ```
 
-*Note: If not using Gazebo, add '-r' flag to the mission scripts to set use_sim_time to False.
+*Note: If not using Gazebo, add '-r' flag to the mission scripts to set use_sim_time to False.*
 
 ## Stop everything
 

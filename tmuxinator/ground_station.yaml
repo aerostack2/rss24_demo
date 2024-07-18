@@ -3,6 +3,7 @@
 namespace       = @settings["namespace"]
 keyboard_teleop = @settings["keyboard_teleop"] == "true"
 rviz            = @settings["rviz"] == "true"
+use_sim_time    = @settings["use_sim_time"] == "true"
 %>
 
 name: ground_station
@@ -16,11 +17,12 @@ windows:
         - ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py
             namespace:=<%= namespace %>
             config_file:=ground_station/keyboard_teleop.yaml
-            use_sim_time:=true
+            use_sim_time:=<%= use_sim_time %>
       <%- end %>
       <%- if rviz %>
         - ros2 launch as2_visualization swarm_viz.launch.py
             namespace_list:=<%= namespace %>
             rviz_config:=ground_station/rviz2_config.rviz
             drone_model:=crazyflie
+            use_sim_time:=<%= use_sim_time %>
       <%- end %>
