@@ -16,6 +16,7 @@ windows:
         - ros2 launch as2_platform_gazebo platform_gazebo_launch.py
             namespace:=<%= namespace %>
             simulation_config_file:=<%= config_folder %>/world.yaml
+            control_modes_file:=<%= config_folder %>/control_modes.yaml
   # Basic Robotics Functions
   - basics_robotics_functions:
       layout:

@@ -151,7 +151,7 @@ class FollowDroneModule():
             )
 
             self.__marker = Marker()
-            self.__marker.ns = 'follow_drone'
+            self.__marker.ns = 'follow_drone_' + self.__namespace
             self.__marker.id = 1
             self.__marker.type = Marker.SPHERE
             self.__marker.action = Marker.ADD

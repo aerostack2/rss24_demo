@@ -98,6 +98,14 @@ tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone1
 tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone2
 ```
 
+## Launching the ground station utilities
+
+For monitoring the drone status using RViz and send commands to it using Aerostack2 Keyboard Teleoperation, you can run the following command:
+
+- Launch the ground station:
+```
+tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1,drone2 rviz=true keyboard_teleop=true
+```
 
 ## Launching the follow-drone mission
 
@@ -119,15 +127,6 @@ python3 mission_follower.py -f drone2 -l drone1
 ```
 
 *Note: If not using Gazebo, add '-r' flag to the mission scripts to set use_sim_time to False.
-
-## Launching the ground station utilities
-
-For monitoring the drone status using RViz and send commands to it using Aerostack2 Keyboard Teleoperation, you can run the following command:
-
-- Launch the ground station:
-```
-tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1,drone2 rviz=true keyboard_teleop=true
-```
 
 ## Stop everything
 

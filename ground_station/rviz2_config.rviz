@@ -5,8 +5,9 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /Marker3
       Splitter Ratio: 0.5382353067398071
-    Tree Height: 363
+    Tree Height: 719
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -336,7 +337,7 @@ Visualization Manager:
       Enabled: true
       Name: Marker
       Namespaces:
-        follow_drone: true
+        follow_drone_drone1: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -344,6 +345,19 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /viz/drone1/queue_poses
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Marker
+      Namespaces:
+        follow_drone_drone2: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /viz/drone2/queue_poses
       Value: true
   Enabled: true
   Global Options:

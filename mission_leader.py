@@ -47,7 +47,7 @@ SLEEP_TIME = 0.5  # Sleep time between actions (seconds)
 SD_MIN = 0.0  # Minimum square dimension for the mission (m)
 SD_MAX = 1.0  # Maximum square dimension for the mission (m)
 LOWEST_HEIGHT = 0.5  # Lowest height for the mission (m)
-HIGHEST_HEIGHT = 1.5  # Highest height for the mission (m)
+HIGHEST_HEIGHT = 1.0  # Highest height for the mission (m)
 
 
 def wait_to_takeoff(drone_interface: DroneInterfaceBase):
@@ -104,7 +104,7 @@ def leader_mission(leader_interface: DroneInterface, follower_interface_list: li
         print(f'Leader {leader_interface.drone_id} go to with path facing {goal}')
         leader_interface.go_to.go_to_point_path_facing(goal, speed=LEADER_MAX_SPEED)
         print('Leader {leader_interface.drone_id} go to done')
-    sleep(SLEEP_TIME)
+    sleep(20)
 
     # LAND
     sleep(SLEEP_TIME)
@@ -143,6 +143,8 @@ if __name__ == '__main__':
     followers_namespaces = args.namespaces
     verbosity = args.verbose
     use_sim_time = args.use_sim_time
+
+    print(f"Use simulation time: {use_sim_time}")
 
     rclpy.init()
     leader_interface = DroneInterface(
