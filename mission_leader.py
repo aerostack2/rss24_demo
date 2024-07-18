@@ -122,7 +122,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--namespaces',
                         type=str,
                         nargs='+',
-                        default=['drone1'],
+                        default=['drone1', 'drone2'],
                         help='Drone follower namespaces (space-separated list)')
     parser.add_argument('-v', '--verbose',
                         action='store_true',

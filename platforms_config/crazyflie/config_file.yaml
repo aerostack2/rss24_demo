@@ -28,7 +28,12 @@ drone0:
     ros__parameters:
       uri: radio://0/80/2M/E7E7E7E701
 
-# drone1:
-#   platform:
-#     ros__parameters:
-#       uri: radio://0/80/2M/E7E7E7E702
+drone1:
+  platform:
+    ros__parameters:
+      uri: radio://0/80/2M/E7E7E7E702
+
+drone2:
+  platform:
+    ros__parameters:
+      uri: radio://0/80/2M/E7E7E7E703

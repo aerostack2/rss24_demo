@@ -64,9 +64,14 @@ For launching the demo using **Crazyflie**, we automated the process using tmuxi
 tmuxinator start -p tmuxinator/crazyflie_launch.yaml namespace=drone0
 ```
 
-- Launch follower drone:
+- Launch follower drone 1:
 ```
 tmuxinator start -p tmuxinator/crazyflie_launch.yaml namespace=drone1
+```
+
+- Launch follower drone 2:
+```
+tmuxinator start -p tmuxinator/crazyflie_launch.yaml namespace=drone2
 ```
 
 ## Launching Aerostack2 components for simulation
@@ -83,9 +88,14 @@ ros2 launch as2_gazebo_assets launch_simulation.py simulation_config_file:=platf
 tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone0
 ```
 
-- Launch follower drone:
+- Launch follower drone 1:
 ```
 tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone1
+```
+
+- Launch follower drone 2:
+```
+tmuxinator start -p tmuxinator/gazebo_launch.yaml namespace=drone2
 ```
 
 
@@ -98,9 +108,14 @@ For running the follow-drone mission you can run the following commands:
 python3 mission_leader.py
 ```
 
-- Launch follower mission:
+- Launch follower mission 1:
 ```
-python3 mission_follower.py
+python3 mission_follower.py -f drone1 -l drone0
+```
+
+- Launch follower mission 2:
+```
+python3 mission_follower.py -f drone2 -l drone1
 ```
 
 *Note: If not using Gazebo, add '-r' flag to the mission scripts to set use_sim_time to False.
@@ -111,5 +126,13 @@ For monitoring the drone status using RViz and send commands to it using Aerosta
 
 - Launch the ground station:
 ```
-tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1 rviz=true keyboard_teleop=false
+tmuxinator start -p tmuxinator/ground_station.yaml namespace=drone0,drone1,drone2 rviz=true keyboard_teleop=true
+```
+
+## Stop everything
+
+For stopping the demo you can run the following commands:
+
+```
+./stop.bash
 ```
