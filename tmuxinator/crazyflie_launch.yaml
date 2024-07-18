@@ -6,6 +6,7 @@ config_folder      = './platforms_config/crazyflie'
 name: <%= namespace %>
 attach: true
 root: ./
+startup_window: monitor
 windows:
   # Platform
   - platform:
