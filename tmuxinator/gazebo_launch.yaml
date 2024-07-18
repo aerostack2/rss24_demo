@@ -1,0 +1,40 @@
+<%
+namespace          = @settings["namespace"]
+config_folder      = './platforms_config/gazebo'
+%>
+
+name: <%= namespace %>
+attach: false
+root: ./
+windows:
+  # Platform
+  - platform:
+      layout: tiled
+      panes: 
+      # Platform Gazebo
+        - ros2 launch as2_platform_gazebo platform_gazebo_launch.py
+            namespace:=<%= namespace %>
+            platform_config_file:=<%= config_folder %>/config_file.yaml
+            simulation_config_file:=<%= config_folder %>/world.yaml
+  # Basic Robotics Functions
+  - basics_robotics_functions:
+      layout:
+      panes:
+        # State Estimation
+        - ros2 launch as2_state_estimator state_estimator_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml
+        # Motion Controller
+        - ros2 launch as2_motion_controller controller_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml
+            plugin_name:=pid_speed_controller
+            plugin_config_file:=<%= config_folder %>/pid_speed_controller.yaml
+  # Behaviors
+  - behaviors:
+      layout:
+      panes:
+        # Motion Behaviors
+        - ros2 launch as2_behaviors_motion motion_behaviors_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml

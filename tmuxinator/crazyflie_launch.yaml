@@ -1,0 +1,43 @@
+<%
+namespace          = @settings["namespace"] 
+config_folder      = './platforms_config/crazyflie'
+%>
+
+name: <%= namespace %>
+attach: false
+root: ./
+windows:
+  # Platform
+  - platform:
+      layout: tiled
+      panes:
+      <%- if namespace == "drone0" %>
+      - ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py
+            swarm_config_file:=<%= config_folder %>/config_file.yaml
+      <%- else %>
+      - echo "Crazyflie platform is running on drone0 namespace"
+      <%- end %>
+
+  # Basic Robotics Functions
+  - basics_robotics_functions:
+      layout:
+      panes:
+        # State Estimation
+        - ros2 launch as2_state_estimator state_estimator_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml
+        # Motion Controller
+        - ros2 launch as2_motion_controller controller_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml
+            plugin_name:=pid_speed_controller
+            plugin_config_file:=<%= config_folder %>/pid_speed_controller.yaml
+
+  # Behaviors
+  - behaviors:
+      layout:
+      panes:
+        # Motion Behaviors
+        - ros2 launch as2_behaviors_motion motion_behaviors_launch.py
+            namespace:=<%= namespace %>
+            config_file:=<%= config_folder %>/config_file.yaml
