@@ -22,3 +22,5 @@ RUN apt install udev usbutils -y
 RUN usermod -aG plugdev root
 COPY ./99-bitcraze.rules /etc/udev/rules.d/99-bitcraze.rules
 
+WORKDIR /root/project_rss24_demo
+
