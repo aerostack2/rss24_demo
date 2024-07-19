@@ -45,9 +45,9 @@ import rclpy
 
 
 # Follow drone parameters
-TAKEOFF_HEIGHT = 0.5  # Takeoff height in meters
+TAKEOFF_HEIGHT = 1.0  # Takeoff height in meters
 SPEED = 0.2  # Max speed in m/s
-SECURITY_DISTANCE_TO_LEADER = 0.3  # Meters
+SECURITY_DISTANCE_TO_LEADER = 0.2  # Meters
 GOAL_THRESHOLD = 0.1  # Meters
 LEADER_POSITION_SAMPLING_DISTANCE = 0.05  # Meters
 RVIZ_DEBUG = True  # Enable RViz debug
