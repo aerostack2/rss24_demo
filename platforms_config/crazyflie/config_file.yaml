@@ -36,4 +36,4 @@ drone1:
 drone2:
   platform:
     ros__parameters:
-      uri: radio://0/33/2M/E7E7E7AAAC
+      uri: radio://0/33/2M/E7E7E7AAAD
