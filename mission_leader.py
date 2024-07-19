@@ -97,7 +97,8 @@ def leader_mission(leader_interface: DroneInterface, follower_interface_list: li
         [SD_MAX, -SD_MAX, HIGHEST_HEIGHT],  # Up
         [SD_MIN, -SD_MAX, HIGHEST_HEIGHT],  # Backward
         [SD_MIN, -SD_MAX, LOWEST_HEIGHT],  # Down
-        [SD_MIN, SD_MIN, LOWEST_HEIGHT]  # Left
+        [SD_MIN, SD_MIN, LOWEST_HEIGHT],  # Left
+        [SD_MAX, SD_MIN, LOWEST_HEIGHT],  # Forward
     ]
 
     for goal in path:
