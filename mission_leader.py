@@ -44,8 +44,11 @@ import rclpy
 
 LEADER_MAX_SPEED = 0.3  # Maximum speed for the leader drone (m/s)
 SLEEP_TIME = 0.5  # Sleep time between actions (seconds)
-SD_MIN = 0.0  # Minimum square dimension for the mission (m)
-SD_MAX = 0.7  # Maximum square dimension for the mission (m)
+SD_MIN_X = -0.3  # Minimum square dimension for the mission (m)
+SD_MAX_X = 0.7  # Maximum square dimension for the mission (m)
+SD_MIN_Y = -0.7  # Minimum square dimension for the mission (m)
+SD_MAX_Y = 0.2  # Maximum square dimension for the mission (m)
+
 LOWEST_HEIGHT = 1.0  # Lowest height for the mission (m)
 HIGHEST_HEIGHT = 1.5  # Highest height for the mission (m)
 
@@ -81,24 +84,24 @@ def leader_mission(leader_interface: DroneInterface, follower_interface_list: li
     print(f'Leader {leader_interface.drone_id} take off done')
 
     # WAIT FOLLOWERS TO TAKE OFF
-    for follower_interface in follower_interface_list:
-        print(f'Leader {leader_interface.drone_id} waiting '
-              'for {follower_interface.drone_id} to take off')
-        wait_to_takeoff(follower_interface)
-        print(f'Leader {leader_interface.drone_id} - '
-              '{follower_interface.drone_id} take off done')
-    sleep(SLEEP_TIME)
+    # for follower_interface in follower_interface_list:
+    #     print(f'Leader {leader_interface.drone_id} waiting '
+    #           'for {follower_interface.drone_id} to take off')
+    #     wait_to_takeoff(follower_interface)
+    #     print(f'Leader {leader_interface.drone_id} - '
+    #           '{follower_interface.drone_id} take off done')
+    # sleep(SLEEP_TIME)
 
     # SIMPLE MISSION
     print(f'Leader {leader_interface.drone_id} simple mission')
     path = [
-        [SD_MAX, SD_MIN, LOWEST_HEIGHT],  # Forward
-        [SD_MAX, -SD_MAX, LOWEST_HEIGHT],  # Right
-        [SD_MAX, -SD_MAX, HIGHEST_HEIGHT],  # Up
-        [SD_MIN, -SD_MAX, HIGHEST_HEIGHT],  # Backward
-        [SD_MIN, -SD_MAX, LOWEST_HEIGHT],  # Down
-        [SD_MIN, SD_MIN, LOWEST_HEIGHT],  # Left
-        [SD_MAX, SD_MIN, LOWEST_HEIGHT],  # Forward
+        [SD_MAX_X, SD_MAX_Y, LOWEST_HEIGHT],  # Forward
+        [SD_MAX_X, SD_MIN_Y, LOWEST_HEIGHT],  # Right
+        [SD_MAX_X, SD_MIN_Y, HIGHEST_HEIGHT],  # Up
+        [SD_MIN_X, SD_MIN_Y, HIGHEST_HEIGHT],  # Backward
+        [SD_MIN_X, SD_MIN_Y, LOWEST_HEIGHT],  # Down
+        [SD_MIN_X, SD_MAX_Y, LOWEST_HEIGHT],  # Left
+        [SD_MAX_X, SD_MAX_Y, LOWEST_HEIGHT],  # Forward
     ]
 
     for goal in path:
