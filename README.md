@@ -1,9 +1,11 @@
 # RSS'24 Aerostack2 demonstration
 Repository contained the demonstration used in the Aerostack2 Tutorial in RSS24 Workshop on "Aerial Swarm Tools and Applications"
 
+You can find out the recording of the tutorial at [Aerial Swarm Tools and Applications Webpage](https://imrclab.github.io/workshop-aerial-swarms-rss2024/)
+The slides are also uploaded to thi
+
 ## Installation steps.
-For this demo we are going to use Aerostack2 v1.1 which is not available throught apt in the moment.
-We provide two ways of setting everything up.
+For this demo we are going to use Aerostack2 v1.1.
 
 ### Setup using Docker (RECOMENDED)
 
